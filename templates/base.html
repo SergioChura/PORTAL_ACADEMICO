@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Portal Académico{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Portal Académico</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Inicio</a>
+            {% if session.get('usuario') %}
+                <a href="{{ url_for('cursos_view') }}">Cursos</a>
+                <a href="{{ url_for('perfil') }}">Perfil</a>
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('cursos_view') }}">Cursos</a>
+                <a href="{{ url_for('login') }}">Iniciar sesión</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>TEM-742 Tecnologías Emergentes II</p>
+    </footer>
+</body>
+</html>

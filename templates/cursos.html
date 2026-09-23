@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Cursos - Portal Académico{% endblock %}
+
+{% block content %}
+    <h2>Cursos disponibles</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Curso</th>
+                <th>Docente</th>
+                <th>Cupos</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso.nombre }}</td>
+                    <td>{{ curso.docente }}</td>
+                    <td>{{ curso.cupos }}</td>
+                    <td>
+                        {% if curso.cupos > 0 %}
+                            <span class="disponible">Curso disponible</span>
+                        {% else %}
+                            <span class="lleno">Curso lleno</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
