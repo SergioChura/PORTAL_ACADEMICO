@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Portal Académico{% endblock %}
+
+{% block content %}
+    <h2>Portal Académico</h2>
+
+    {% if usuario_preferido %}
+        <p>Bienvenido nuevamente, {{ usuario_preferido }}.</p>
+        <p><a href="{{ url_for('eliminar_cookie') }}">Eliminar cookie de usuario preferido</a></p>
+    {% else %}
+        <p>Bienvenido al Portal Académico.</p>
+    {% endif %}
+
+    <p>Utilice el menú de navegación para acceder a los cursos, iniciar sesión o ver su perfil.</p>
+{% endblock %}
